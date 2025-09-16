@@ -11,12 +11,18 @@ namespace APIs_Signature_DigiGO.Services
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly ITokenService _tokenService;
         private readonly ILogger<LegalisationService> _logger;
+        private readonly IGraphApiService _graphApiService; // Injection du nouveau service
         private const string BaseUrl = "https://legalisation.stb.com.tn/Signer/signature_document";
 
-        public LegalisationService(IHttpClientFactory httpClientFactory, ITokenService tokenService, ILogger<LegalisationService> logger)
+        public LegalisationService(
+                IHttpClientFactory httpClientFactory,
+                ITokenService tokenService,
+                IGraphApiService graphApiService,
+                ILogger<LegalisationService> logger) // Mise à jour du constructeur
         {
             _httpClientFactory = httpClientFactory;
             _tokenService = tokenService;
+            _graphApiService = graphApiService;
             _logger = logger;
         }
 
@@ -173,34 +179,31 @@ namespace APIs_Signature_DigiGO.Services
             throw new KeyNotFoundException($"Aucun utilisateur trouvé pour le matricule : {matricule}");
         }
 
-        // Nouvelle implémentation pour la signature simplifiée
+        // Cette méthode est maintenant supprimée
+        // private (string Email, string FullName ) GetUserDataByMatricule(string matricule) { ... }
+
         public async Task<SignatureResponseDto> CreateSignatureSimplifieeAsync(SignatureSimplifieeRequestDto request)
         {
-            _logger.LogInformation("CreateSignatureSimplifieeAsync called for Matricule={Matricule} IdDemand={IdDemand}", request?.Matricule, request?.IdDemand);
+            //if (request.IdDigital != "1234")
+            //{
+            //    return new SignatureResponseDto { Status = "error", ResponseCode = "AUTH-01", Message = "IdDigital non autorisé." };
+            //}
 
-            // 2. Récupérer les informations du signataire à partir du matricule
-            (string email, string fullName) userData;
+            (string? email, string? fullName) userData;
             try
             {
-                userData = GetUserDataByMatricule(request.Matricule!);
+                // Appel au nouveau service
+                userData = await _graphApiService.GetUserDataByMatriculeAsync(request.Matricule!);
             }
             catch (KeyNotFoundException ex)
             {
-                _logger.LogWarning(ex, "User lookup failed for matricule={Matricule}", request?.Matricule);
-                return new SignatureResponseDto
-                {
-                    Status = "error",
-                    ResponseCode = "USER-02",
-                    Message = ex.Message
-                };
+                return new SignatureResponseDto { Status = "error", ResponseCode = "USER-02", Message = ex.Message };
             }
-            catch (Exception ex)
+            catch (Exception ex) // Attraper d'autres erreurs potentielles (ex: API Graph indisponible)
             {
-                _logger.LogError(ex, "Unexpected error during user lookup for matricule={Matricule}", request?.Matricule);
-                throw;
+                return new SignatureResponseDto { Status = "error", ResponseCode = "GRAPH-500", Message = $"Erreur lors de la récupération des données utilisateur : {ex.Message}" };
             }
 
-            // 3. Construire l'objet de requête complet (SignatureRequestDto)
             var fullRequest = new SignatureRequestDto
             {
                 IdDemand = request.IdDemand,
@@ -213,9 +216,9 @@ namespace APIs_Signature_DigiGO.Services
                     {
                         Mail = userData.email,
                         FullName = userData.fullName,
-                        Company = "STB",      // Valeur figée
-                        Department = "IT",    // Valeur figée
-                        Type = "Client"       // Valeur figée
+                        Company = "STB",
+                        Department = "IT",
+                        Type = "Client"
                     }
                 },
                 Settings = new SettingsDto
@@ -229,14 +232,8 @@ namespace APIs_Signature_DigiGO.Services
                 }
             };
 
-            _logger.LogDebug("Full signature request prepared for IdDemand={IdDemand} SignatoryEmail={Email}", fullRequest.IdDemand, userData.email);
-
-            // 4. Appeler la méthode de signature originale avec l'objet complet
-            var result = await CreateSignatureDemandAsync(fullRequest);
-            _logger.LogInformation("CreateSignatureSimplifieeAsync completed for IdDemand={IdDemand} responseCode={ResponseCode}", fullRequest.IdDemand, result?.ResponseCode);
-            return result;
+            return await CreateSignatureDemandAsync(fullRequest);
         }
-
 
     }
 }

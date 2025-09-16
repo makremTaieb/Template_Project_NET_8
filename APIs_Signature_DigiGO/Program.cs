@@ -24,6 +24,10 @@ builder.Services.AddSingleton<ITokenService, TokenService>();
 builder.Services.AddScoped<ILegalisationService, LegalisationService>();
 
 
+
+// Ajouter le nouveau service pour l'API Graph
+builder.Services.AddSingleton<IGraphApiService, GraphApiService>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
