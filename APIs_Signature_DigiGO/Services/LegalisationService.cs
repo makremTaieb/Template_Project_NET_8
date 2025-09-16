@@ -1,6 +1,8 @@
 ﻿using APIs_Signature_DigiGO.Dtos;
 using APIs_Signature_DigiGO.Iservices;
 using System.Text.Json;
+using Microsoft.Extensions.Logging;
+using System.Net.Http;
 
 namespace APIs_Signature_DigiGO.Services
 {
@@ -8,105 +10,173 @@ namespace APIs_Signature_DigiGO.Services
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly ITokenService _tokenService;
+        private readonly ILogger<LegalisationService> _logger;
         private const string BaseUrl = "https://legalisation.stb.com.tn/Signer/signature_document";
 
-        public LegalisationService(IHttpClientFactory httpClientFactory, ITokenService tokenService)
+        public LegalisationService(IHttpClientFactory httpClientFactory, ITokenService tokenService, ILogger<LegalisationService> logger)
         {
             _httpClientFactory = httpClientFactory;
             _tokenService = tokenService;
+            _logger = logger;
         }
 
         private async Task<HttpClient> CreateClientWithTokenAsync()
         {
+            _logger.LogDebug("Creating HTTP client and retrieving API token.");
             var client = _httpClientFactory.CreateClient();
             var token = await _tokenService.GetApiTokenAsync();
-            // Le token est ajouté comme un header standard, comme dans Postman
+            if (string.IsNullOrWhiteSpace(token))
+            {
+                _logger.LogWarning("TokenService returned empty token.");
+            }
+            client.DefaultRequestHeaders.Remove("token");
             client.DefaultRequestHeaders.Add("token", token);
+            _logger.LogDebug("HTTP client created with token header.");
             return client;
         }
 
         public async Task<CheckDemandResponseDto> CheckDemandAsync(string demandeId)
         {
-            var client = await CreateClientWithTokenAsync();
-            client.DefaultRequestHeaders.Add("demandeId", demandeId);
+            _logger.LogInformation("CheckDemandAsync called for demandeId={DemandeId}", demandeId);
+            try
+            {
+                var client = await CreateClientWithTokenAsync();
+                client.DefaultRequestHeaders.Remove("demandeId");
+                client.DefaultRequestHeaders.Add("demandeId", demandeId);
 
-            var response = await client.GetAsync($"{BaseUrl}/check_demand");
-            response.EnsureSuccessStatusCode();
+                var url = $"{BaseUrl}/check_demand";
+                _logger.LogDebug("Sending GET request to {Url} with demandeId={DemandeId}", url, demandeId);
 
-            var content = await response.Content.ReadAsStringAsync();
-            return JsonSerializer.Deserialize<CheckDemandResponseDto>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
+                var response = await client.GetAsync(url);
+                var content = await response.Content.ReadAsStringAsync();
+                _logger.LogDebug("Received response StatusCode={StatusCode} Body={ResponseBody}", response.StatusCode, content);
+
+                response.EnsureSuccessStatusCode();
+
+                var dto = JsonSerializer.Deserialize<CheckDemandResponseDto>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
+                _logger.LogInformation("CheckDemandAsync completed for demandeId={DemandeId} with status={Status}", demandeId, dto?.Status);
+                return dto;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error in CheckDemandAsync for demandeId={DemandeId}", demandeId);
+                throw;
+            }
         }
 
         public async Task<CheckCertifResponseDto> CheckCertifAsync(string email)
         {
-            var client = await CreateClientWithTokenAsync();
-            client.DefaultRequestHeaders.Add("email", email);
+            _logger.LogInformation("CheckCertifAsync called for email={Email}", email);
+            try
+            {
+                var client = await CreateClientWithTokenAsync();
+                client.DefaultRequestHeaders.Remove("email");
+                client.DefaultRequestHeaders.Add("email", email);
 
-            var response = await client.GetAsync($"{BaseUrl}/check_certif");
-            response.EnsureSuccessStatusCode();
+                var url = $"{BaseUrl}/check_certif";
+                _logger.LogDebug("Sending GET request to {Url} with email={Email}", url, email);
 
-            var content = await response.Content.ReadAsStringAsync();
-            return JsonSerializer.Deserialize<CheckCertifResponseDto>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
+                var response = await client.GetAsync(url);
+                var content = await response.Content.ReadAsStringAsync();
+                _logger.LogDebug("Received response StatusCode={StatusCode} Body={ResponseBody}", response.StatusCode, content);
+
+                response.EnsureSuccessStatusCode();
+
+                var dto = JsonSerializer.Deserialize<CheckCertifResponseDto>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
+                _logger.LogInformation("CheckCertifAsync completed for email={Email} with responseCode={ResponseCode}", email, dto?.ResponseCode);
+                return dto;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error in CheckCertifAsync for email={Email}", email);
+                throw;
+            }
         }
 
         public async Task<VerifResponseDto> VerifSignatureAsync(string idDemand)
         {
-            var client = await CreateClientWithTokenAsync();
-            client.DefaultRequestHeaders.Add("IdDemand", idDemand);
+            _logger.LogInformation("VerifSignatureAsync called for idDemand={IdDemand}", idDemand);
+            try
+            {
+                var client = await CreateClientWithTokenAsync();
+                client.DefaultRequestHeaders.Remove("IdDemand");
+                client.DefaultRequestHeaders.Add("IdDemand", idDemand);
 
-            var response = await client.GetAsync($"{BaseUrl}/verif");
-            response.EnsureSuccessStatusCode();
+                var url = $"{BaseUrl}/verif";
+                _logger.LogDebug("Sending GET request to {Url} with IdDemand={IdDemand}", url, idDemand);
 
-            var content = await response.Content.ReadAsStringAsync();
-            return JsonSerializer.Deserialize<VerifResponseDto>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
+                var response = await client.GetAsync(url);
+                var content = await response.Content.ReadAsStringAsync();
+                _logger.LogDebug("Received response StatusCode={StatusCode} Body={ResponseBody}", response.StatusCode, content);
+
+                response.EnsureSuccessStatusCode();
+
+                var dto = JsonSerializer.Deserialize<VerifResponseDto>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
+                _logger.LogInformation("VerifSignatureAsync completed for idDemand={IdDemand} signatureComplete={SignatureComplete}", idDemand, dto?.SignatureComplete);
+                return dto;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error in VerifSignatureAsync for idDemand={IdDemand}", idDemand);
+                throw;
+            }
         }
 
         public async Task<SignatureResponseDto> CreateSignatureDemandAsync(SignatureRequestDto request)
         {
-            var client = await CreateClientWithTokenAsync();
+            _logger.LogInformation("CreateSignatureDemandAsync called for IdDemand={IdDemand} Service={Service}", request?.IdDemand, request?.Service);
+            try
+            {
+                var client = await CreateClientWithTokenAsync();
 
-            var jsonContent = JsonSerializer.Serialize(request);
-            var httpContent = new StringContent(jsonContent, System.Text.Encoding.UTF8, "application/json");
+                var jsonContent = JsonSerializer.Serialize(request);
+                _logger.LogDebug("Posting to {BaseUrl} payload={Payload}", BaseUrl, jsonContent);
 
-            var response = await client.PostAsync(BaseUrl, httpContent);
-            response.EnsureSuccessStatusCode();
+                var httpContent = new StringContent(jsonContent, System.Text.Encoding.UTF8, "application/json");
 
-            var content = await response.Content.ReadAsStringAsync();
-            return JsonSerializer.Deserialize<SignatureResponseDto>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
+                var response = await client.PostAsync(BaseUrl, httpContent);
+                var content = await response.Content.ReadAsStringAsync();
+                _logger.LogDebug("Received response StatusCode={StatusCode} Body={ResponseBody}", response.StatusCode, content);
+
+                response.EnsureSuccessStatusCode();
+
+                var dto = JsonSerializer.Deserialize<SignatureResponseDto>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
+                _logger.LogInformation("CreateSignatureDemandAsync succeeded for IdDemand={IdDemand} responseCode={ResponseCode}", request?.IdDemand, dto?.ResponseCode);
+                return dto;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error in CreateSignatureDemandAsync for IdDemand={IdDemand}", request?.IdDemand);
+                throw;
+            }
         }
 
 
         // Méthode pour simuler la récupération des données utilisateur
         private (string Email, string FullName) GetUserDataByMatricule(string matricule)
         {
+            _logger.LogDebug("GetUserDataByMatricule called for matricule={Matricule}", matricule);
             // Dans une application réelle, vous interrogeriez une base de données
             // ou un autre service (ex: Active Directory, API RH).
             // Ici, nous utilisons des données statiques pour l'exemple.
             if (matricule == "4591P")
             {
-                return ("makrem.taieb@stb.com.tn", "Makrem Taieb");
+                var result = ("makrem.taieb@stb.com.tn", "Makrem Taieb");
+                _logger.LogDebug("User found for matricule={Matricule} email={Email}", matricule, result.Item1);
+                return result;
             }
             // Ajoutez d'autres utilisateurs si nécessaire
             // else if (matricule == "...") { ... }
 
             // Retourner une valeur par défaut ou lever une exception si l'utilisateur n'est pas trouvé
+            _logger.LogWarning("No user found for matricule={Matricule}", matricule);
             throw new KeyNotFoundException($"Aucun utilisateur trouvé pour le matricule : {matricule}");
         }
 
         // Nouvelle implémentation pour la signature simplifiée
         public async Task<SignatureResponseDto> CreateSignatureSimplifieeAsync(SignatureSimplifieeRequestDto request)
         {
-            // 1. Vérifier si l'IdDigital est éligible
-            //if (request.IdDigital != "1234")
-            //{
-            //    // Retourner une réponse d'erreur claire
-            //    return new SignatureResponseDto
-            //    {
-            //        Status = "error",
-            //        ResponseCode = "AUTH-01", // Code d'erreur personnalisé
-            //        Message = "IdDigital non autorisé à utiliser ce service."
-            //    };
-            //}
+            _logger.LogInformation("CreateSignatureSimplifieeAsync called for Matricule={Matricule} IdDemand={IdDemand}", request?.Matricule, request?.IdDemand);
 
             // 2. Récupérer les informations du signataire à partir du matricule
             (string email, string fullName) userData;
@@ -116,12 +186,18 @@ namespace APIs_Signature_DigiGO.Services
             }
             catch (KeyNotFoundException ex)
             {
+                _logger.LogWarning(ex, "User lookup failed for matricule={Matricule}", request?.Matricule);
                 return new SignatureResponseDto
                 {
                     Status = "error",
                     ResponseCode = "USER-02",
                     Message = ex.Message
                 };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Unexpected error during user lookup for matricule={Matricule}", request?.Matricule);
+                throw;
             }
 
             // 3. Construire l'objet de requête complet (SignatureRequestDto)
@@ -153,8 +229,12 @@ namespace APIs_Signature_DigiGO.Services
                 }
             };
 
+            _logger.LogDebug("Full signature request prepared for IdDemand={IdDemand} SignatoryEmail={Email}", fullRequest.IdDemand, userData.email);
+
             // 4. Appeler la méthode de signature originale avec l'objet complet
-            return await CreateSignatureDemandAsync(fullRequest);
+            var result = await CreateSignatureDemandAsync(fullRequest);
+            _logger.LogInformation("CreateSignatureSimplifieeAsync completed for IdDemand={IdDemand} responseCode={ResponseCode}", fullRequest.IdDemand, result?.ResponseCode);
+            return result;
         }
 
 
