@@ -194,7 +194,14 @@ namespace APIs_Signature_DigiGO.Services
             {
                 // Appel au nouveau service
                 userData = await _graphApiService.GetUserDataByMatriculeAsync(request.Matricule!);
+                // consommer la methode CheckCertifAsync (email) pour verifier si l'email existe dans la base de donnée de DigiGO
+                var certifExists = await CheckCertifAsync(userData.email);
+                if (certifExists.ResponseCode != "00")
+                {
+                    return new SignatureResponseDto { Status = "error", ResponseCode = "USER-03", Message = "L'email de l'utilisateur n'existe pas dans la base de donnée de DigiGO." };
+                }
             }
+
             catch (KeyNotFoundException ex)
             {
                 return new SignatureResponseDto { Status = "error", ResponseCode = "USER-02", Message = ex.Message };
