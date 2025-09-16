@@ -61,7 +61,7 @@ namespace APIs_Signature_DigiGO.Controllers
         }
 
         // NOUVEAU POINT DE TERMINAISON
-        [HttpPost("signature-simplifiee")]
+        [HttpPost("signature")]
         public async Task<IActionResult> CreateSignatureSimplifiee([FromBody] SignatureSimplifieeRequestDto request)
         {
             if (!ModelState.IsValid)

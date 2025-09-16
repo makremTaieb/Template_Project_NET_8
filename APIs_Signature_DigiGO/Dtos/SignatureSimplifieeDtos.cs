@@ -2,13 +2,19 @@
 
 namespace APIs_Signature_DigiGO.Dtos
 {
+public enum SignatureSendType
+{
+    Sequential,
+    Parallel
+}
+
     public class SignatureSimplifieeRequestDto
     {
         [Required]
         public string? IdDigital { get; set; }
 
         [Required]
-        public string? IdDemand { get; set; }
+        public string? RequestId  { get; set; }
 
         [Required]
         public string? Service { get; set; }
@@ -20,6 +26,9 @@ namespace APIs_Signature_DigiGO.Dtos
         public string? Document { get; set; } // Contenu du document en Base64
 
         [Required]
-        public string? Matricule { get; set; }
+        public List<string>? Signatories { get; set; } // Liste des matricules
+
+        [Required]
+    public SignatureSendType SendType { get; set; } // Sequential or Parallel
     }
 }

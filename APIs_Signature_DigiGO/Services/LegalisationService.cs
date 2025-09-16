@@ -184,53 +184,88 @@ namespace APIs_Signature_DigiGO.Services
 
         public async Task<SignatureResponseDto> CreateSignatureSimplifieeAsync(SignatureSimplifieeRequestDto request)
         {
-            //if (request.IdDigital != "1234")
-            //{
-            //    return new SignatureResponseDto { Status = "error", ResponseCode = "AUTH-01", Message = "IdDigital non autorisé." };
-            //}
+            _logger.LogInformation("CreateSignatureSimplifieeAsync called for RequestId={RequestId} SignatoriesCount={Count}", request?.RequestId, request?.Signatories?.Count ?? 0);
 
-            (string? email, string? fullName) userData;
-            try
+            if (request?.Signatories == null || request.Signatories.Count == 0)
             {
-                // Appel au nouveau service
-                userData = await _graphApiService.GetUserDataByMatriculeAsync(request.Matricule!);
-                // consommer la methode CheckCertifAsync (email) pour verifier si l'email existe dans la base de donnée de DigiGO
-                var certifExists = await CheckCertifAsync(userData.email);
-                if (certifExists.ResponseCode != "00")
+                _logger.LogWarning("No matricules provided in request RequestId={RequestId}", request?.RequestId);
+                return new SignatureResponseDto
                 {
-                    return new SignatureResponseDto { Status = "error", ResponseCode = "USER-03", Message = "L'email de l'utilisateur n'existe pas dans la base de donnée de DigiGO." };
+                    Status = "error",
+                    ResponseCode = "USER-01",
+                    Message = "Aucune matricule fournie."
+                };
+            }
+
+            var signatoryDtos = new List<SignatoryDto>();
+            var failingMatricules = new List<string>();
+
+            foreach (var matricule in request.Signatories)
+            {
+                try
+                {
+                    _logger.LogDebug("Resolving matricule={Matricule}", matricule);
+                    var userData = await _graphApiService.GetUserDataByMatriculeAsync(matricule);
+                    if (string.IsNullOrWhiteSpace(userData.Email))
+                    {
+                        _logger.LogWarning("Graph returned empty email for matricule={Matricule}", matricule);
+                        failingMatricules.Add(matricule);
+                        continue;
+                    }
+
+                    _logger.LogDebug("Checking certificate for email={Email} (matricule={Matricule})", userData.Email, matricule);
+                    var certifExists = await CheckCertifAsync(userData.Email);
+                    if (certifExists?.ResponseCode != "00")
+                    {
+                        _logger.LogWarning("Certificate not found for matricule={Matricule} email={Email} responseCode={ResponseCode}", matricule, userData.Email, certifExists?.ResponseCode);
+                        failingMatricules.Add(matricule);
+                        continue;
+                    }
+
+                    signatoryDtos.Add(new SignatoryDto
+                    {
+                        Mail = userData.Email,
+                        FullName = userData.FullName,
+                        Company = "STB",
+                        Department = "IT",
+                        Type = "Client"
+                    });
+
+                }
+                catch (KeyNotFoundException knf)
+                {
+                    _logger.LogWarning(knf, "User not found for matricule={Matricule}", matricule);
+                    failingMatricules.Add(matricule);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Error while processing matricule={Matricule}", matricule);
+                    // treat as failure for this matricule
+                    failingMatricules.Add(matricule);
                 }
             }
 
-            catch (KeyNotFoundException ex)
+            if (failingMatricules.Count > 0)
             {
-                return new SignatureResponseDto { Status = "error", ResponseCode = "USER-02", Message = ex.Message };
-            }
-            catch (Exception ex) // Attraper d'autres erreurs potentielles (ex: API Graph indisponible)
-            {
-                return new SignatureResponseDto { Status = "error", ResponseCode = "GRAPH-500", Message = $"Erreur lors de la récupération des données utilisateur : {ex.Message}" };
+                _logger.LogInformation("Signature request aborted for RequestId={RequestId}. Failing matricules: {Failing}", request.RequestId, string.Join(',', failingMatricules));
+                return new SignatureResponseDto
+                {
+                    Status = "error",
+                    ResponseCode = "USER-03",
+                    Message = $"Une ou plusieurs matricules n'ont pas de certificat actif ou sont introuvables: {string.Join(", ", failingMatricules)}"
+                };
             }
 
             var fullRequest = new SignatureRequestDto
             {
-                IdDemand = request.IdDemand,
+                IdDemand = request.RequestId,
                 Service = request.Service,
                 FileName = request.FileName,
                 Document = request.Document,
-                Signatories = new List<SignatoryDto>
-                {
-                    new SignatoryDto
-                    {
-                        Mail = userData.email,
-                        FullName = userData.fullName,
-                        Company = "STB",
-                        Department = "IT",
-                        Type = "Client"
-                    }
-                },
+                Signatories = signatoryDtos,
                 Settings = new SettingsDto
                 {
-                    Order = "Seq",
+                    Order = request.SendType == SignatureSendType.Sequential ? "Seq" : "Par",
                     Rappel = new RappelDto
                     {
                         Frequency = "2",
@@ -239,6 +274,7 @@ namespace APIs_Signature_DigiGO.Services
                 }
             };
 
+            _logger.LogDebug("All matricules validated. Sending signature request RequestId={RequestId} SignatoryCount={Count}", request.RequestId, signatoryDtos.Count);
             return await CreateSignatureDemandAsync(fullRequest);
         }
 
