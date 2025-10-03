@@ -10,8 +10,13 @@ public enum SignatureSendType
 
     public class SignatureSimplifieeRequestDto
     {
+
+
         [Required]
         public string? IdDigital { get; set; }
+
+        [Required]
+        public string? ClientType { get; set; }
 
         [Required]
         public string? RequestId  { get; set; }
@@ -30,5 +35,6 @@ public enum SignatureSendType
 
         [Required]
     public SignatureSendType SendType { get; set; } // Sequential or Parallel
+
     }
 }
