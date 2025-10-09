@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace APIs_Signature_DigiGO.Controllers
 {
     [ApiController]
-    [Route("api/legalisation")]
+    [Route("api/v1/digital-signature")]
     public class LegalisationController : ControllerBase
     {
         private readonly ILegalisationService _legalisationService;
@@ -16,7 +16,7 @@ namespace APIs_Signature_DigiGO.Controllers
             _legalisationService = legalisationService;
         }
 
-        [HttpGet("check-demand")]
+        [HttpGet("check-document-status")]
         public async Task<IActionResult> CheckDemand([FromHeader(Name = "demandeId")] string demandeId)
         {
             if (string.IsNullOrEmpty(demandeId))
@@ -38,7 +38,7 @@ namespace APIs_Signature_DigiGO.Controllers
             return Ok(result);
         }
 
-        [HttpGet("verif-signature")]
+        [HttpGet("check-signers-status")]
         public async Task<IActionResult> VerifSignature([FromHeader(Name = "IdDemand")] string idDemand)
         {
             if (string.IsNullOrEmpty(idDemand))
@@ -61,7 +61,7 @@ namespace APIs_Signature_DigiGO.Controllers
         }
 
         // NOUVEAU POINT DE TERMINAISON
-        [HttpPost("signature")]
+        [HttpPost("sign-document")]
         public async Task<IActionResult> CreateSignatureSimplifiee([FromBody] SignatureSimplifieeRequestDto request)
         {
             if (!ModelState.IsValid)

@@ -1,0 +1,37 @@
+﻿services:
+  apis_signature_digigo:
+    image: ${DOCKER_REGISTRY-}apissignaturedigigo
+    build:
+      context: .
+      dockerfile: APIs_Signature_DigiGO/Dockerfile
+    container_name: apis-signature-digigo
+    environment:
+      # Environnement ASP.NET
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+
+      # Configuration Azure AD (à injecter depuis les variables d’environnement)
+      - AzureAd__Instance=https://login.microsoftonline.com/
+      - AzureAd__TenantId=e5fe619b-6c5b-4d46-ae40-a11065879783
+      - AzureAd__ClientId=5b54a03a-0b6a-4e3d-a9af-ccaca9ca8245
+      - AzureAd__ClientSecret=${AZUREAD_CLIENT_SECRET}  # 🔐 à définir dans .env
+      - AzureAd__Scope=https://graph.microsoft.com/.default
+
+      # Configuration Graph API
+      - GraphApi__BaseUrl=https://graph.microsoft.com/v1.0
+      - GraphApi__UserFilter=users/?$filter=onPremisesSamAccountName eq '{0}'&$count=true
+
+      # Serilog (optionnel)
+      - Serilog__MinimumLevel__Default=Information
+      - Serilog__MinimumLevel__Override__Microsoft=Information
+      - Serilog__MinimumLevel__Override__System=Warning
+
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    networks:
+      - baas-network
+
+networks:
+  baas-network:
+    driver: bridge

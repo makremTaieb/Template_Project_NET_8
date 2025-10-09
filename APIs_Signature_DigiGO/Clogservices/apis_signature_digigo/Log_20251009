@@ -1,0 +1,282 @@
+2025-10-09 12:48:36.301 +00:00 [INF] Now listening on: http://[::]:8080
+2025-10-09 12:48:36.364 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-09 12:48:36.369 +00:00 [INF] Hosting environment: Development
+2025-10-09 12:48:36.373 +00:00 [INF] Content root path: /app
+2025-10-09 12:48:36.657 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/swagger - null null
+2025-10-09 12:48:36.731 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/swagger - 301 0 null 77.0445ms
+2025-10-09 12:48:36.741 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/swagger/index.html - null null
+2025-10-09 12:48:36.810 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/swagger/index.html - 200 null text/html;charset=utf-8 68.7127ms
+2025-10-09 12:48:36.851 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/swagger/swagger-ui.css - null null
+2025-10-09 12:48:36.869 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/swagger/swagger-ui-standalone-preset.js - null null
+2025-10-09 12:48:36.869 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/swagger/swagger-ui-bundle.js - null null
+2025-10-09 12:48:37.147 +00:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2025-10-09 12:48:37.147 +00:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2025-10-09 12:48:37.162 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/swagger/swagger-ui-standalone-preset.js - 200 230280 text/javascript 301.373ms
+2025-10-09 12:48:37.162 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/swagger/swagger-ui.css - 200 152034 text/css 310.6145ms
+2025-10-09 12:48:37.246 +00:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2025-10-09 12:48:37.255 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/swagger/swagger-ui-bundle.js - 200 1456926 text/javascript 395.0287ms
+2025-10-09 12:48:37.455 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/swagger/favicon-32x32.png - null null
+2025-10-09 12:48:37.455 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/swagger/v1/swagger.json - null null
+2025-10-09 12:48:37.467 +00:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-10-09 12:48:37.475 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/swagger/favicon-32x32.png - 200 628 image/png 18.9763ms
+2025-10-09 12:48:37.580 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 124.3923ms
+2025-10-09 12:48:39.055 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/flutter_service_worker.js?v=null - null null
+2025-10-09 12:48:39.062 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/flutter_service_worker.js?v=null - 404 0 null 7.5018ms
+2025-10-09 12:48:39.070 +00:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:8080/flutter_service_worker.js, Response status code: 404
+2025-10-09 12:48:46.740 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/api/v1/digital-signature/check-certif - null null
+2025-10-09 12:48:46.749 +00:00 [INF] Executing endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CheckCertif (APIs_Signature_DigiGO)'
+2025-10-09 12:48:46.779 +00:00 [INF] Route matched with {action = "CheckCertif", controller = "Legalisation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CheckCertif(System.String) on controller APIs_Signature_DigiGO.Controllers.LegalisationController (APIs_Signature_DigiGO).
+2025-10-09 12:48:46.801 +00:00 [INF] CheckCertifAsync called for email=makrem16790@gmail.com
+2025-10-09 12:48:46.829 +00:00 [INF] Requesting new API token from https://doc-sign-api.stb.com.tn/api/user/request_token. Note: move credentials to configuration.
+2025-10-09 12:48:47.771 +00:00 [INF] New token acquired, will expire at "2025-10-09T13:48:47.7709099Z"
+2025-10-09 12:48:48.307 +00:00 [ERR] Error in CheckCertifAsync for email=makrem16790@gmail.com
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 401 (Access Denied).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at APIs_Signature_DigiGO.Services.LegalisationService.CheckCertifAsync(String email) in E:\Startup\Plateforme Signature DigiGO\APIs_Signature_DigiGO\APIs_Signature_DigiGO\Services\LegalisationService.cs:line 89
+2025-10-09 12:48:48.476 +00:00 [INF] Executed action APIs_Signature_DigiGO.Controllers.LegalisationController.CheckCertif (APIs_Signature_DigiGO) in 1688.5637ms
+2025-10-09 12:48:48.483 +00:00 [INF] Executed endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CheckCertif (APIs_Signature_DigiGO)'
+2025-10-09 12:48:48.560 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/api/v1/digital-signature/check-certif - 500 null application/json; charset=utf-8 1819.6022ms
+2025-10-09 12:49:15.102 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/api/v1/digital-signature/check-certif - null null
+2025-10-09 12:49:15.126 +00:00 [INF] Executing endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CheckCertif (APIs_Signature_DigiGO)'
+2025-10-09 12:49:15.134 +00:00 [INF] Route matched with {action = "CheckCertif", controller = "Legalisation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CheckCertif(System.String) on controller APIs_Signature_DigiGO.Controllers.LegalisationController (APIs_Signature_DigiGO).
+2025-10-09 12:53:01.130 +00:00 [INF] Now listening on: http://[::]:8080
+2025-10-09 12:53:01.187 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-09 12:53:01.192 +00:00 [INF] Hosting environment: Development
+2025-10-09 12:53:01.196 +00:00 [INF] Content root path: /app
+2025-10-09 12:53:01.425 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/swagger/index.html - null null
+2025-10-09 12:53:01.528 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/swagger/index.html - 200 null text/html;charset=utf-8 103.1013ms
+2025-10-09 12:53:01.742 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/swagger/v1/swagger.json - null null
+2025-10-09 12:53:01.829 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 87.6929ms
+2025-10-09 12:53:03.373 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/flutter_service_worker.js?v=null - null null
+2025-10-09 12:53:03.381 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/flutter_service_worker.js?v=null - 404 0 null 8.2451ms
+2025-10-09 12:53:03.387 +00:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:8080/flutter_service_worker.js, Response status code: 404
+2025-10-09 12:54:02.887 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/api/v1/digital-signature/check-certif - null null
+2025-10-09 12:54:02.912 +00:00 [INF] Executing endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CheckCertif (APIs_Signature_DigiGO)'
+2025-10-09 12:54:02.938 +00:00 [INF] Route matched with {action = "CheckCertif", controller = "Legalisation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CheckCertif(System.String) on controller APIs_Signature_DigiGO.Controllers.LegalisationController (APIs_Signature_DigiGO).
+2025-10-09 12:54:06.416 +00:00 [INF] CheckCertifAsync called for email=makrem16790@gmail.com
+2025-10-09 12:54:06.440 +00:00 [INF] Requesting new API token from https://doc-sign-api.stb.com.tn/api/user/request_token. Note: move credentials to configuration.
+2025-10-09 12:54:07.512 +00:00 [INF] New token acquired, will expire at "2025-10-09T13:54:07.5122894Z"
+2025-10-09 12:54:08.051 +00:00 [ERR] Error in CheckCertifAsync for email=makrem16790@gmail.com
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 401 (Access Denied).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at APIs_Signature_DigiGO.Services.LegalisationService.CheckCertifAsync(String email) in E:\Startup\Plateforme Signature DigiGO\APIs_Signature_DigiGO\APIs_Signature_DigiGO\Services\LegalisationService.cs:line 89
+2025-10-09 12:54:08.204 +00:00 [INF] Executed action APIs_Signature_DigiGO.Controllers.LegalisationController.CheckCertif (APIs_Signature_DigiGO) in 5258.642ms
+2025-10-09 12:54:08.209 +00:00 [INF] Executed endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CheckCertif (APIs_Signature_DigiGO)'
+2025-10-09 12:54:08.270 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/api/v1/digital-signature/check-certif - 500 null application/json; charset=utf-8 5383.6199ms
+2025-10-09 12:54:15.562 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/api/v1/digital-signature/check-certif - null null
+2025-10-09 12:54:15.569 +00:00 [INF] Executing endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CheckCertif (APIs_Signature_DigiGO)'
+2025-10-09 12:54:15.573 +00:00 [INF] Route matched with {action = "CheckCertif", controller = "Legalisation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CheckCertif(System.String) on controller APIs_Signature_DigiGO.Controllers.LegalisationController (APIs_Signature_DigiGO).
+2025-10-09 12:54:21.268 +00:00 [INF] CheckCertifAsync called for email=makrem16790@gmail.com
+2025-10-09 12:56:00.701 +00:00 [ERR] Error in CheckCertifAsync for email=makrem16790@gmail.com
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 401 (Access Denied).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at APIs_Signature_DigiGO.Services.LegalisationService.CheckCertifAsync(String email) in E:\Startup\Plateforme Signature DigiGO\APIs_Signature_DigiGO\APIs_Signature_DigiGO\Services\LegalisationService.cs:line 89
+2025-10-09 12:56:00.774 +00:00 [INF] Executed action APIs_Signature_DigiGO.Controllers.LegalisationController.CheckCertif (APIs_Signature_DigiGO) in 105198.8583ms
+2025-10-09 12:56:00.779 +00:00 [INF] Executed endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CheckCertif (APIs_Signature_DigiGO)'
+2025-10-09 12:56:00.829 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/api/v1/digital-signature/check-certif - 500 null application/json; charset=utf-8 105269.6358ms
+2025-10-09 12:56:37.757 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/api/v1/digital-signature/check-certif - null null
+2025-10-09 12:56:37.814 +00:00 [INF] Executing endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CheckCertif (APIs_Signature_DigiGO)'
+2025-10-09 12:56:37.819 +00:00 [INF] Route matched with {action = "CheckCertif", controller = "Legalisation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CheckCertif(System.String) on controller APIs_Signature_DigiGO.Controllers.LegalisationController (APIs_Signature_DigiGO).
+2025-10-09 12:56:48.096 +00:00 [INF] CheckCertifAsync called for email=makrem16790@gmail.com
+2025-10-09 12:57:23.048 +00:00 [ERR] Error in CheckCertifAsync for email=makrem16790@gmail.com
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 401 (Access Denied).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at APIs_Signature_DigiGO.Services.LegalisationService.CheckCertifAsync(String email)
+2025-10-09 12:57:23.125 +00:00 [INF] Executed action APIs_Signature_DigiGO.Controllers.LegalisationController.CheckCertif (APIs_Signature_DigiGO) in 45303.4853ms
+2025-10-09 12:57:23.130 +00:00 [INF] Executed endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CheckCertif (APIs_Signature_DigiGO)'
+2025-10-09 12:57:23.185 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/api/v1/digital-signature/check-certif - 500 null application/json; charset=utf-8 45429.7501ms
+2025-10-09 12:57:28.604 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/api/v1/digital-signature/check-certif - null null
+2025-10-09 12:57:28.610 +00:00 [INF] Executing endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CheckCertif (APIs_Signature_DigiGO)'
+2025-10-09 12:57:28.620 +00:00 [INF] Route matched with {action = "CheckCertif", controller = "Legalisation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CheckCertif(System.String) on controller APIs_Signature_DigiGO.Controllers.LegalisationController (APIs_Signature_DigiGO).
+2025-10-09 12:57:30.657 +00:00 [INF] CheckCertifAsync called for email=makrem16790@gmail.com
+2025-10-09 12:57:30.767 +00:00 [ERR] Error in CheckCertifAsync for email=makrem16790@gmail.com
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 401 (Access Denied).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at APIs_Signature_DigiGO.Services.LegalisationService.CheckCertifAsync(String email)
+2025-10-09 12:57:30.841 +00:00 [INF] Executed action APIs_Signature_DigiGO.Controllers.LegalisationController.CheckCertif (APIs_Signature_DigiGO) in 2217.143ms
+2025-10-09 12:57:30.845 +00:00 [INF] Executed endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CheckCertif (APIs_Signature_DigiGO)'
+2025-10-09 12:57:30.901 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/api/v1/digital-signature/check-certif - 500 null application/json; charset=utf-8 2296.8001ms
+2025-10-09 12:57:34.821 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/api/v1/digital-signature/check-certif - null null
+2025-10-09 12:57:34.828 +00:00 [INF] Executing endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CheckCertif (APIs_Signature_DigiGO)'
+2025-10-09 12:57:34.834 +00:00 [INF] Route matched with {action = "CheckCertif", controller = "Legalisation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CheckCertif(System.String) on controller APIs_Signature_DigiGO.Controllers.LegalisationController (APIs_Signature_DigiGO).
+2025-10-09 12:57:38.415 +00:00 [INF] CheckCertifAsync called for email=makrem16790@gmail.com
+2025-10-09 12:58:01.540 +00:00 [INF] Requesting new API token from https://doc-sign-api.stb.com.tn/api/user/request_token. Note: move credentials to configuration.
+2025-10-09 12:58:26.581 +00:00 [INF] New token acquired, will expire at "2025-10-09T13:58:26.5812837Z"
+2025-10-09 12:58:26.713 +00:00 [ERR] Error in CheckCertifAsync for email=makrem16790@gmail.com
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 401 (Access Denied).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at APIs_Signature_DigiGO.Services.LegalisationService.CheckCertifAsync(String email)
+2025-10-09 12:58:26.802 +00:00 [INF] Executed action APIs_Signature_DigiGO.Controllers.LegalisationController.CheckCertif (APIs_Signature_DigiGO) in 51963.4831ms
+2025-10-09 12:58:26.807 +00:00 [INF] Executed endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CheckCertif (APIs_Signature_DigiGO)'
+2025-10-09 12:58:26.872 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/api/v1/digital-signature/check-certif - 500 null application/json; charset=utf-8 52052.3522ms
+2025-10-09 12:59:29.735 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/api/v1/digital-signature/check-certif - null null
+2025-10-09 12:59:29.763 +00:00 [INF] Executing endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CheckCertif (APIs_Signature_DigiGO)'
+2025-10-09 12:59:29.773 +00:00 [INF] Route matched with {action = "CheckCertif", controller = "Legalisation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CheckCertif(System.String) on controller APIs_Signature_DigiGO.Controllers.LegalisationController (APIs_Signature_DigiGO).
+2025-10-09 12:59:31.252 +00:00 [INF] CheckCertifAsync called for email=makrem16790@gmail.com
+2025-10-09 12:59:34.001 +00:00 [INF] Requesting new API token from https://doc-sign-api.stb.com.tn/api/user/request_token. Note: move credentials to configuration.
+2025-10-09 12:59:34.775 +00:00 [INF] New token acquired, will expire at "2025-10-09T13:59:34.7752048Z"
+2025-10-09 13:01:59.029 +00:00 [INF] Now listening on: http://[::]:8080
+2025-10-09 13:01:59.090 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-09 13:01:59.095 +00:00 [INF] Hosting environment: Development
+2025-10-09 13:01:59.100 +00:00 [INF] Content root path: /app
+2025-10-09 13:01:59.351 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/swagger/index.html - null null
+2025-10-09 13:01:59.492 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/swagger/index.html - 200 null text/html;charset=utf-8 143.1727ms
+2025-10-09 13:01:59.654 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/swagger/v1/swagger.json - null null
+2025-10-09 13:01:59.766 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 112.1495ms
+2025-10-09 13:02:01.153 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/flutter_service_worker.js?v=null - null null
+2025-10-09 13:02:01.161 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/flutter_service_worker.js?v=null - 404 0 null 8.0207ms
+2025-10-09 13:02:01.168 +00:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:8080/flutter_service_worker.js, Response status code: 404
+2025-10-09 13:02:25.471 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/api/v1/digital-signature/check-certif - null null
+2025-10-09 13:02:25.481 +00:00 [INF] Executing endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CheckCertif (APIs_Signature_DigiGO)'
+2025-10-09 13:02:25.503 +00:00 [INF] Route matched with {action = "CheckCertif", controller = "Legalisation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CheckCertif(System.String) on controller APIs_Signature_DigiGO.Controllers.LegalisationController (APIs_Signature_DigiGO).
+2025-10-09 13:02:28.347 +00:00 [INF] CheckCertifAsync called for email=makrem16790@gmail.com
+2025-10-09 13:02:29.168 +00:00 [INF] Requesting new API token from https://doc-sign-api.stb.com.tn/api/user/request_token. Note: move credentials to configuration.
+2025-10-09 13:02:30.011 +00:00 [INF] New token acquired, will expire at "2025-10-09T14:02:30.0113009Z"
+2025-10-09 13:02:31.872 +00:00 [INF] CheckCertifAsync completed for email=makrem16790@gmail.com with responseCode=02
+2025-10-09 13:02:31.883 +00:00 [INF] Executing OkObjectResult, writing value of type 'APIs_Signature_DigiGO.Dtos.CheckCertifResponseDto'.
+2025-10-09 13:02:31.894 +00:00 [INF] Executed action APIs_Signature_DigiGO.Controllers.LegalisationController.CheckCertif (APIs_Signature_DigiGO) in 6383.7766ms
+2025-10-09 13:02:31.900 +00:00 [INF] Executed endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CheckCertif (APIs_Signature_DigiGO)'
+2025-10-09 13:02:31.906 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/api/v1/digital-signature/check-certif - 200 null application/json; charset=utf-8 6434.9864ms
+2025-10-09 13:02:55.574 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/api/v1/digital-signature/check-signers-status - null null
+2025-10-09 13:02:55.599 +00:00 [INF] Executing endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.VerifSignature (APIs_Signature_DigiGO)'
+2025-10-09 13:02:55.608 +00:00 [INF] Route matched with {action = "VerifSignature", controller = "Legalisation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerifSignature(System.String) on controller APIs_Signature_DigiGO.Controllers.LegalisationController (APIs_Signature_DigiGO).
+2025-10-09 13:02:55.617 +00:00 [INF] VerifSignatureAsync called for idDemand=09092025-02
+2025-10-09 13:03:00.189 +00:00 [INF] VerifSignatureAsync completed for idDemand=09092025-02 signatureComplete=true
+2025-10-09 13:03:00.195 +00:00 [INF] Executing OkObjectResult, writing value of type 'APIs_Signature_DigiGO.Dtos.VerifResponseDto'.
+2025-10-09 13:03:00.206 +00:00 [INF] Executed action APIs_Signature_DigiGO.Controllers.LegalisationController.VerifSignature (APIs_Signature_DigiGO) in 4592.2018ms
+2025-10-09 13:03:00.211 +00:00 [INF] Executed endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.VerifSignature (APIs_Signature_DigiGO)'
+2025-10-09 13:03:00.218 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/api/v1/digital-signature/check-signers-status - 200 null application/json; charset=utf-8 4643.377ms
+2025-10-09 13:03:25.024 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:8080/api/v1/digital-signature/signature-demande - application/json 61903
+2025-10-09 13:03:25.030 +00:00 [INF] Executing endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureDemand (APIs_Signature_DigiGO)'
+2025-10-09 13:03:25.039 +00:00 [INF] Route matched with {action = "CreateSignatureDemand", controller = "Legalisation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateSignatureDemand(APIs_Signature_DigiGO.Dtos.SignatureRequestDto) on controller APIs_Signature_DigiGO.Controllers.LegalisationController (APIs_Signature_DigiGO).
+2025-10-09 13:03:25.060 +00:00 [INF] CreateSignatureDemandAsync called for IdDemand=monta1234556-03 Service=DigiCorp
+2025-10-09 13:03:25.295 +00:00 [ERR] Error in CreateSignatureDemandAsync for IdDemand=monta1234556-03
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 404 (Resource Not Found).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at APIs_Signature_DigiGO.Services.LegalisationService.CreateSignatureDemandAsync(SignatureRequestDto request)
+2025-10-09 13:03:25.411 +00:00 [INF] Executed action APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureDemand (APIs_Signature_DigiGO) in 367.3385ms
+2025-10-09 13:03:25.417 +00:00 [INF] Executed endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureDemand (APIs_Signature_DigiGO)'
+2025-10-09 13:03:25.479 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:8080/api/v1/digital-signature/signature-demande - 500 null application/json; charset=utf-8 455.3647ms
+2025-10-09 13:04:36.554 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:8080/api/v1/digital-signature/signature-demande - application/json 61903
+2025-10-09 13:04:36.560 +00:00 [INF] Executing endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureDemand (APIs_Signature_DigiGO)'
+2025-10-09 13:04:36.566 +00:00 [INF] Route matched with {action = "CreateSignatureDemand", controller = "Legalisation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateSignatureDemand(APIs_Signature_DigiGO.Dtos.SignatureRequestDto) on controller APIs_Signature_DigiGO.Controllers.LegalisationController (APIs_Signature_DigiGO).
+2025-10-09 13:04:36.573 +00:00 [INF] CreateSignatureDemandAsync called for IdDemand=monta1234556-03 Service=DigiCorp
+2025-10-09 13:07:53.832 +00:00 [INF] Now listening on: http://[::]:8080
+2025-10-09 13:07:53.892 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-09 13:07:53.897 +00:00 [INF] Hosting environment: Development
+2025-10-09 13:07:53.902 +00:00 [INF] Content root path: /app
+2025-10-09 13:07:54.057 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/swagger/index.html - null null
+2025-10-09 13:07:54.166 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/swagger/index.html - 200 null text/html;charset=utf-8 109.4401ms
+2025-10-09 13:07:54.316 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/swagger/v1/swagger.json - null null
+2025-10-09 13:07:54.401 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 85.0542ms
+2025-10-09 13:07:55.844 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/flutter_service_worker.js?v=null - null null
+2025-10-09 13:07:55.853 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/flutter_service_worker.js?v=null - 404 0 null 8.871ms
+2025-10-09 13:07:55.860 +00:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:8080/flutter_service_worker.js, Response status code: 404
+2025-10-09 13:08:03.159 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:8080/api/v1/digital-signature/signature-demande - application/json 61903
+2025-10-09 13:08:03.169 +00:00 [INF] Executing endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureDemand (APIs_Signature_DigiGO)'
+2025-10-09 13:08:03.196 +00:00 [INF] Route matched with {action = "CreateSignatureDemand", controller = "Legalisation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateSignatureDemand(APIs_Signature_DigiGO.Dtos.SignatureRequestDto) on controller APIs_Signature_DigiGO.Controllers.LegalisationController (APIs_Signature_DigiGO).
+2025-10-09 13:08:03.242 +00:00 [INF] CreateSignatureDemandAsync called for IdDemand=monta1234556-03 Service=DigiCorp
+2025-10-09 13:08:06.464 +00:00 [INF] Requesting new API token from https://doc-sign-api.stb.com.tn/api/user/request_token. Note: move credentials to configuration.
+2025-10-09 13:08:07.219 +00:00 [INF] New token acquired, will expire at "2025-10-09T14:08:07.2195586Z"
+2025-10-09 13:08:18.006 +00:00 [INF] CreateSignatureDemandAsync succeeded for IdDemand=monta1234556-03 responseCode=03
+2025-10-09 13:08:18.015 +00:00 [INF] Executing OkObjectResult, writing value of type 'APIs_Signature_DigiGO.Dtos.SignatureResponseDto'.
+2025-10-09 13:08:18.026 +00:00 [INF] Executed action APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureDemand (APIs_Signature_DigiGO) in 14823.5444ms
+2025-10-09 13:08:18.031 +00:00 [INF] Executed endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureDemand (APIs_Signature_DigiGO)'
+2025-10-09 13:08:18.038 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:8080/api/v1/digital-signature/signature-demande - 200 null application/json; charset=utf-8 14880.1113ms
+2025-10-09 13:08:30.580 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:8080/api/v1/digital-signature/signature-demande - application/json 61903
+2025-10-09 13:08:30.588 +00:00 [INF] Executing endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureDemand (APIs_Signature_DigiGO)'
+2025-10-09 13:08:30.593 +00:00 [INF] Route matched with {action = "CreateSignatureDemand", controller = "Legalisation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateSignatureDemand(APIs_Signature_DigiGO.Dtos.SignatureRequestDto) on controller APIs_Signature_DigiGO.Controllers.LegalisationController (APIs_Signature_DigiGO).
+2025-10-09 13:08:30.600 +00:00 [INF] CreateSignatureDemandAsync called for IdDemand=monta1234556-04 Service=DigiCorp
+2025-10-09 13:08:35.016 +00:00 [INF] CreateSignatureDemandAsync succeeded for IdDemand=monta1234556-04 responseCode=03
+2025-10-09 13:08:35.021 +00:00 [INF] Executing OkObjectResult, writing value of type 'APIs_Signature_DigiGO.Dtos.SignatureResponseDto'.
+2025-10-09 13:08:35.025 +00:00 [INF] Executed action APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureDemand (APIs_Signature_DigiGO) in 4427.3514ms
+2025-10-09 13:08:35.030 +00:00 [INF] Executed endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureDemand (APIs_Signature_DigiGO)'
+2025-10-09 13:08:35.036 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:8080/api/v1/digital-signature/signature-demande - 200 null application/json; charset=utf-8 4455.6404ms
+2025-10-09 13:08:45.461 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:8080/api/v1/digital-signature/signature-demande - application/json 61903
+2025-10-09 13:08:45.468 +00:00 [INF] Executing endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureDemand (APIs_Signature_DigiGO)'
+2025-10-09 13:08:45.473 +00:00 [INF] Route matched with {action = "CreateSignatureDemand", controller = "Legalisation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateSignatureDemand(APIs_Signature_DigiGO.Dtos.SignatureRequestDto) on controller APIs_Signature_DigiGO.Controllers.LegalisationController (APIs_Signature_DigiGO).
+2025-10-09 13:08:45.479 +00:00 [INF] CreateSignatureDemandAsync called for IdDemand=monta1234556-09 Service=DigiCorp
+2025-10-09 13:08:53.059 +00:00 [INF] CreateSignatureDemandAsync succeeded for IdDemand=monta1234556-09 responseCode=00
+2025-10-09 13:08:53.065 +00:00 [INF] Executing OkObjectResult, writing value of type 'APIs_Signature_DigiGO.Dtos.SignatureResponseDto'.
+2025-10-09 13:08:53.069 +00:00 [INF] Executed action APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureDemand (APIs_Signature_DigiGO) in 7591.6359ms
+2025-10-09 13:08:53.075 +00:00 [INF] Executed endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureDemand (APIs_Signature_DigiGO)'
+2025-10-09 13:08:53.079 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:8080/api/v1/digital-signature/signature-demande - 200 null application/json; charset=utf-8 7618.4214ms
+2025-10-09 13:10:30.323 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:8080/api/v1/digital-signature/sign-document - application/json 61587
+2025-10-09 13:10:30.336 +00:00 [INF] Executing endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureSimplifiee (APIs_Signature_DigiGO)'
+2025-10-09 13:10:30.346 +00:00 [INF] Route matched with {action = "CreateSignatureSimplifiee", controller = "Legalisation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateSignatureSimplifiee(APIs_Signature_DigiGO.Dtos.SignatureSimplifieeRequestDto) on controller APIs_Signature_DigiGO.Controllers.LegalisationController (APIs_Signature_DigiGO).
+2025-10-09 13:10:37.602 +00:00 [INF] CreateSignatureSimplifieeAsync called for RequestId=1235464646 SignatoriesCount=1
+2025-10-09 13:10:38.360 +00:00 [ERR] Error while processing matricule=4591P
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 401 (Unauthorized).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at APIs_Signature_DigiGO.Services.GraphApiService.GetGraphApiTokenAsync() in E:\Startup\Plateforme Signature DigiGO\APIs_Signature_DigiGO\APIs_Signature_DigiGO\Services\GraphApiService.cs:line 42
+   at APIs_Signature_DigiGO.Services.GraphApiService.GetUserDataByMatriculeAsync(String matricule) in E:\Startup\Plateforme Signature DigiGO\APIs_Signature_DigiGO\APIs_Signature_DigiGO\Services\GraphApiService.cs:line 60
+   at APIs_Signature_DigiGO.Services.LegalisationService.CreateSignatureSimplifieeAsync(SignatureSimplifieeRequestDto request) in E:\Startup\Plateforme Signature DigiGO\APIs_Signature_DigiGO\APIs_Signature_DigiGO\Services\LegalisationService.cs:line 213
+2025-10-09 13:10:38.446 +00:00 [INF] Signature request aborted for RequestId=1235464646. Failing matricules: 4591P
+2025-10-09 13:10:47.326 +00:00 [INF] Executing OkObjectResult, writing value of type 'APIs_Signature_DigiGO.Dtos.SignatureResponseDto'.
+2025-10-09 13:10:47.331 +00:00 [INF] Executed action APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureSimplifiee (APIs_Signature_DigiGO) in 16982.0461ms
+2025-10-09 13:10:47.345 +00:00 [INF] Executed endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureSimplifiee (APIs_Signature_DigiGO)'
+2025-10-09 13:10:47.358 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:8080/api/v1/digital-signature/sign-document - 200 null application/json; charset=utf-8 17044.3686ms
+2025-10-09 13:10:51.272 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:8080/api/v1/digital-signature/sign-document - application/json 61587
+2025-10-09 13:10:51.277 +00:00 [INF] Executing endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureSimplifiee (APIs_Signature_DigiGO)'
+2025-10-09 13:10:51.283 +00:00 [INF] Route matched with {action = "CreateSignatureSimplifiee", controller = "Legalisation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateSignatureSimplifiee(APIs_Signature_DigiGO.Dtos.SignatureSimplifieeRequestDto) on controller APIs_Signature_DigiGO.Controllers.LegalisationController (APIs_Signature_DigiGO).
+2025-10-09 13:11:00.612 +00:00 [INF] CreateSignatureSimplifieeAsync called for RequestId=1235464646 SignatoriesCount=1
+2025-10-09 13:11:35.206 +00:00 [ERR] Error while processing matricule=4591P
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 401 (Unauthorized).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at APIs_Signature_DigiGO.Services.GraphApiService.GetGraphApiTokenAsync() in E:\Startup\Plateforme Signature DigiGO\APIs_Signature_DigiGO\APIs_Signature_DigiGO\Services\GraphApiService.cs:line 42
+   at APIs_Signature_DigiGO.Services.GraphApiService.GetUserDataByMatriculeAsync(String matricule) in E:\Startup\Plateforme Signature DigiGO\APIs_Signature_DigiGO\APIs_Signature_DigiGO\Services\GraphApiService.cs:line 60
+   at APIs_Signature_DigiGO.Services.LegalisationService.CreateSignatureSimplifieeAsync(SignatureSimplifieeRequestDto request) in E:\Startup\Plateforme Signature DigiGO\APIs_Signature_DigiGO\APIs_Signature_DigiGO\Services\LegalisationService.cs:line 213
+2025-10-09 13:11:35.267 +00:00 [INF] Signature request aborted for RequestId=1235464646. Failing matricules: 4591P
+2025-10-09 13:11:35.272 +00:00 [INF] Executing OkObjectResult, writing value of type 'APIs_Signature_DigiGO.Dtos.SignatureResponseDto'.
+2025-10-09 13:11:35.277 +00:00 [INF] Executed action APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureSimplifiee (APIs_Signature_DigiGO) in 43990.0339ms
+2025-10-09 13:11:35.282 +00:00 [INF] Executed endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureSimplifiee (APIs_Signature_DigiGO)'
+2025-10-09 13:11:35.287 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:8080/api/v1/digital-signature/sign-document - 200 null application/json; charset=utf-8 44016.0277ms
+2025-10-09 13:11:37.091 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:8080/api/v1/digital-signature/sign-document - application/json 61587
+2025-10-09 13:11:37.096 +00:00 [INF] Executing endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureSimplifiee (APIs_Signature_DigiGO)'
+2025-10-09 13:11:37.101 +00:00 [INF] Route matched with {action = "CreateSignatureSimplifiee", controller = "Legalisation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateSignatureSimplifiee(APIs_Signature_DigiGO.Dtos.SignatureSimplifieeRequestDto) on controller APIs_Signature_DigiGO.Controllers.LegalisationController (APIs_Signature_DigiGO).
+2025-10-09 13:11:40.801 +00:00 [INF] CreateSignatureSimplifieeAsync called for RequestId=1235464646 SignatoriesCount=1
+2025-10-09 13:11:53.234 +00:00 [ERR] Error while processing matricule=4591P
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 401 (Unauthorized).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at APIs_Signature_DigiGO.Services.GraphApiService.GetGraphApiTokenAsync() in E:\Startup\Plateforme Signature DigiGO\APIs_Signature_DigiGO\APIs_Signature_DigiGO\Services\GraphApiService.cs:line 42
+   at APIs_Signature_DigiGO.Services.GraphApiService.GetUserDataByMatriculeAsync(String matricule) in E:\Startup\Plateforme Signature DigiGO\APIs_Signature_DigiGO\APIs_Signature_DigiGO\Services\GraphApiService.cs:line 60
+   at APIs_Signature_DigiGO.Services.LegalisationService.CreateSignatureSimplifieeAsync(SignatureSimplifieeRequestDto request) in E:\Startup\Plateforme Signature DigiGO\APIs_Signature_DigiGO\APIs_Signature_DigiGO\Services\LegalisationService.cs:line 213
+2025-10-09 13:11:53.240 +00:00 [INF] Signature request aborted for RequestId=1235464646. Failing matricules: 4591P
+2025-10-09 13:11:53.245 +00:00 [INF] Executing OkObjectResult, writing value of type 'APIs_Signature_DigiGO.Dtos.SignatureResponseDto'.
+2025-10-09 13:11:53.250 +00:00 [INF] Executed action APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureSimplifiee (APIs_Signature_DigiGO) in 16145.0237ms
+2025-10-09 13:11:53.255 +00:00 [INF] Executed endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureSimplifiee (APIs_Signature_DigiGO)'
+2025-10-09 13:11:53.259 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:8080/api/v1/digital-signature/sign-document - 200 null application/json; charset=utf-8 16169.78ms
+2025-10-09 13:15:04.344 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:8080/api/v1/digital-signature/sign-document - application/json 61587
+2025-10-09 13:15:04.350 +00:00 [INF] Executing endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureSimplifiee (APIs_Signature_DigiGO)'
+2025-10-09 13:15:04.358 +00:00 [INF] Route matched with {action = "CreateSignatureSimplifiee", controller = "Legalisation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateSignatureSimplifiee(APIs_Signature_DigiGO.Dtos.SignatureSimplifieeRequestDto) on controller APIs_Signature_DigiGO.Controllers.LegalisationController (APIs_Signature_DigiGO).
+2025-10-09 13:15:09.098 +00:00 [INF] CreateSignatureSimplifieeAsync called for RequestId=1235464646 SignatoriesCount=1
+2025-10-09 13:16:27.434 +00:00 [INF] Now listening on: http://[::]:8080
+2025-10-09 13:16:27.494 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-09 13:16:27.499 +00:00 [INF] Hosting environment: Development
+2025-10-09 13:16:27.503 +00:00 [INF] Content root path: /app
+2025-10-09 13:16:27.711 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/swagger/index.html - null null
+2025-10-09 13:16:27.822 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/swagger/index.html - 200 null text/html;charset=utf-8 111.0119ms
+2025-10-09 13:16:27.980 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/swagger/v1/swagger.json - null null
+2025-10-09 13:16:28.072 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 92.1399ms
+2025-10-09 13:16:29.495 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/flutter_service_worker.js?v=null - null null
+2025-10-09 13:16:29.503 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/flutter_service_worker.js?v=null - 404 0 null 8.3295ms
+2025-10-09 13:16:29.509 +00:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:8080/flutter_service_worker.js, Response status code: 404
+2025-10-09 13:16:31.354 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:8080/api/v1/digital-signature/sign-document - application/json 61587
+2025-10-09 13:16:31.363 +00:00 [INF] Executing endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureSimplifiee (APIs_Signature_DigiGO)'
+2025-10-09 13:16:31.392 +00:00 [INF] Route matched with {action = "CreateSignatureSimplifiee", controller = "Legalisation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateSignatureSimplifiee(APIs_Signature_DigiGO.Dtos.SignatureSimplifieeRequestDto) on controller APIs_Signature_DigiGO.Controllers.LegalisationController (APIs_Signature_DigiGO).
+2025-10-09 13:16:34.552 +00:00 [INF] CreateSignatureSimplifieeAsync called for RequestId=1235464646 SignatoriesCount=1
+2025-10-09 13:16:44.227 +00:00 [ERR] Error while processing matricule=4591P
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 401 (Unauthorized).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at APIs_Signature_DigiGO.Services.GraphApiService.GetGraphApiTokenAsync() in E:\Startup\Plateforme Signature DigiGO\APIs_Signature_DigiGO\APIs_Signature_DigiGO\Services\GraphApiService.cs:line 42
+   at APIs_Signature_DigiGO.Services.GraphApiService.GetUserDataByMatriculeAsync(String matricule) in E:\Startup\Plateforme Signature DigiGO\APIs_Signature_DigiGO\APIs_Signature_DigiGO\Services\GraphApiService.cs:line 60
+   at APIs_Signature_DigiGO.Services.LegalisationService.CreateSignatureSimplifieeAsync(SignatureSimplifieeRequestDto request) in E:\Startup\Plateforme Signature DigiGO\APIs_Signature_DigiGO\APIs_Signature_DigiGO\Services\LegalisationService.cs:line 213
+2025-10-09 13:16:44.298 +00:00 [INF] Signature request aborted for RequestId=1235464646. Failing matricules: 4591P
+2025-10-09 13:16:44.308 +00:00 [INF] Executing OkObjectResult, writing value of type 'APIs_Signature_DigiGO.Dtos.SignatureResponseDto'.
+2025-10-09 13:16:44.318 +00:00 [INF] Executed action APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureSimplifiee (APIs_Signature_DigiGO) in 12919.5815ms
+2025-10-09 13:16:44.324 +00:00 [INF] Executed endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureSimplifiee (APIs_Signature_DigiGO)'
+2025-10-09 13:16:44.332 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:8080/api/v1/digital-signature/sign-document - 200 null application/json; charset=utf-8 12978.2603ms
+2025-10-09 13:16:56.843 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:8080/api/v1/digital-signature/sign-document - application/json 61587
+2025-10-09 13:16:56.850 +00:00 [INF] Executing endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureSimplifiee (APIs_Signature_DigiGO)'
+2025-10-09 13:16:56.854 +00:00 [INF] Route matched with {action = "CreateSignatureSimplifiee", controller = "Legalisation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateSignatureSimplifiee(APIs_Signature_DigiGO.Dtos.SignatureSimplifieeRequestDto) on controller APIs_Signature_DigiGO.Controllers.LegalisationController (APIs_Signature_DigiGO).
+2025-10-09 13:16:59.574 +00:00 [INF] CreateSignatureSimplifieeAsync called for RequestId=1235464646 SignatoriesCount=1

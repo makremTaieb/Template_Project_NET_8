@@ -17,6 +17,7 @@ namespace APIs_Signature_DigiGO.Services
         // Idéalement, ces valeurs devraient provenir de votre configuration (appsettings.json)
         private const string TokenUrl = "https://doc-sign-api.stb.com.tn/api/user/request_token";
         private const string ApiKey = "73526BAF092A54893D9E57614BE32444";
+
         private const string Username = "admin_stb@stbbank.com.tn";
         private const string Password = "F83n`EcjK£(q£qI4N";
 

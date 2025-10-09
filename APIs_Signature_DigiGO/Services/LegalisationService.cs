@@ -12,8 +12,8 @@ namespace APIs_Signature_DigiGO.Services
         private readonly ITokenService _tokenService;
         private readonly ILogger<LegalisationService> _logger;
         private readonly IGraphApiService _graphApiService; // Injection du nouveau service
-        private const string BaseUrl = "https://legalisation.stb.com.tn/Signer/signature_document";
-
+        private const string BaseUrl = "https://openbank.stb.com.tn/digital-signature";
+        private const string OcpApimSubscriptionKey = "d3536b43ad124f4eaa8f0a68a09b4c5b";
         public LegalisationService(
                 IHttpClientFactory httpClientFactory,
                 ITokenService tokenService,
@@ -37,6 +37,8 @@ namespace APIs_Signature_DigiGO.Services
             }
             client.DefaultRequestHeaders.Remove("token");
             client.DefaultRequestHeaders.Add("token", token);
+            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", OcpApimSubscriptionKey);
+
             _logger.LogDebug("HTTP client created with token header.");
             return client;
         }
@@ -49,6 +51,7 @@ namespace APIs_Signature_DigiGO.Services
                 var client = await CreateClientWithTokenAsync();
                 client.DefaultRequestHeaders.Remove("demandeId");
                 client.DefaultRequestHeaders.Add("demandeId", demandeId);
+                client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", OcpApimSubscriptionKey);
 
                 var url = $"{BaseUrl}/check_demand";
                 _logger.LogDebug("Sending GET request to {Url} with demandeId={DemandeId}", url, demandeId);
@@ -78,6 +81,7 @@ namespace APIs_Signature_DigiGO.Services
                 var client = await CreateClientWithTokenAsync();
                 client.DefaultRequestHeaders.Remove("email");
                 client.DefaultRequestHeaders.Add("email", email);
+                client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", OcpApimSubscriptionKey);
 
                 var url = $"{BaseUrl}/check_certif";
                 _logger.LogDebug("Sending GET request to {Url} with email={Email}", url, email);
@@ -107,6 +111,7 @@ namespace APIs_Signature_DigiGO.Services
                 var client = await CreateClientWithTokenAsync();
                 client.DefaultRequestHeaders.Remove("IdDemand");
                 client.DefaultRequestHeaders.Add("IdDemand", idDemand);
+                client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", OcpApimSubscriptionKey);
 
                 var url = $"{BaseUrl}/verif";
                 _logger.LogDebug("Sending GET request to {Url} with IdDemand={IdDemand}", url, idDemand);
@@ -134,13 +139,13 @@ namespace APIs_Signature_DigiGO.Services
             try
             {
                 var client = await CreateClientWithTokenAsync();
-
+                var url = $"{BaseUrl}/signature_document";
                 var jsonContent = JsonSerializer.Serialize(request);
-                _logger.LogDebug("Posting to {BaseUrl} payload={Payload}", BaseUrl, jsonContent);
+                _logger.LogDebug("Posting to {BaseUrl} payload={Payload}", url, jsonContent);
 
                 var httpContent = new StringContent(jsonContent, System.Text.Encoding.UTF8, "application/json");
 
-                var response = await client.PostAsync(BaseUrl, httpContent);
+                var response = await client.PostAsync(url, httpContent);
                 var content = await response.Content.ReadAsStringAsync();
                 _logger.LogDebug("Received response StatusCode={StatusCode} Body={ResponseBody}", response.StatusCode, content);
 
