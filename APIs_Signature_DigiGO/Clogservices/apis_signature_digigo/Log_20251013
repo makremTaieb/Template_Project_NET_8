@@ -1,0 +1,28 @@
+2025-10-13 15:51:06.504 +00:00 [INF] Now listening on: http://[::]:8080
+2025-10-13 15:51:06.586 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-13 15:51:06.593 +00:00 [INF] Hosting environment: Development
+2025-10-13 15:51:06.599 +00:00 [INF] Content root path: /app
+2025-10-13 15:51:06.930 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/swagger - null null
+2025-10-13 15:51:07.069 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/swagger - 301 0 null 140.6182ms
+2025-10-13 15:51:07.090 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/swagger/index.html - null null
+2025-10-13 15:51:07.229 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/swagger/index.html - 200 null text/html;charset=utf-8 139.6481ms
+2025-10-13 15:51:07.513 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/swagger/v1/swagger.json - null null
+2025-10-13 15:51:07.797 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 283.59ms
+2025-10-13 15:51:09.024 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/flutter_service_worker.js?v=null - null null
+2025-10-13 15:51:09.035 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/flutter_service_worker.js?v=null - 404 0 null 11.1004ms
+2025-10-13 15:51:09.042 +00:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:8080/flutter_service_worker.js, Response status code: 404
+2025-10-13 15:51:19.739 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:8080/api/v1/digital-signature/sign-document - application/json 61582
+2025-10-13 15:51:19.749 +00:00 [INF] Executing endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureSimplifiee (APIs_Signature_DigiGO)'
+2025-10-13 15:51:19.778 +00:00 [INF] Route matched with {action = "CreateSignatureSimplifiee", controller = "Legalisation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateSignatureSimplifiee(APIs_Signature_DigiGO.Dtos.SignatureSimplifieeRequestDto) on controller APIs_Signature_DigiGO.Controllers.LegalisationController (APIs_Signature_DigiGO).
+2025-10-13 15:51:25.343 +00:00 [INF] CreateSignatureSimplifieeAsync called for RequestId=1111554545 SignatoriesCount=1
+2025-10-13 15:53:20.462 +00:00 [ERR] Error while processing matricule=4591P
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 401 (Unauthorized).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at APIs_Signature_DigiGO.Services.GraphApiService.GetGraphApiTokenAsync() in E:\Startup\Plateforme Signature DigiGO\APIs_Signature_DigiGO\APIs_Signature_DigiGO\Services\GraphApiService.cs:line 42
+   at APIs_Signature_DigiGO.Services.GraphApiService.GetUserDataByMatriculeAsync(String matricule) in E:\Startup\Plateforme Signature DigiGO\APIs_Signature_DigiGO\APIs_Signature_DigiGO\Services\GraphApiService.cs:line 60
+   at APIs_Signature_DigiGO.Services.LegalisationService.CreateSignatureSimplifieeAsync(SignatureSimplifieeRequestDto request) in E:\Startup\Plateforme Signature DigiGO\APIs_Signature_DigiGO\APIs_Signature_DigiGO\Services\LegalisationService.cs:line 213
+2025-10-13 15:53:20.535 +00:00 [INF] Signature request aborted for RequestId=1111554545. Failing matricules: 4591P
+2025-10-13 15:53:20.547 +00:00 [INF] Executing OkObjectResult, writing value of type 'APIs_Signature_DigiGO.Dtos.SignatureResponseDto'.
+2025-10-13 15:53:20.559 +00:00 [INF] Executed action APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureSimplifiee (APIs_Signature_DigiGO) in 120778.0713ms
+2025-10-13 15:53:20.564 +00:00 [INF] Executed endpoint 'APIs_Signature_DigiGO.Controllers.LegalisationController.CreateSignatureSimplifiee (APIs_Signature_DigiGO)'
+2025-10-13 15:53:20.572 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:8080/api/v1/digital-signature/sign-document - 200 null application/json; charset=utf-8 120839.0247ms

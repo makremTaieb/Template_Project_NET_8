@@ -14,7 +14,7 @@
       - AzureAd__Instance=https://login.microsoftonline.com/
       - AzureAd__TenantId=e5fe619b-6c5b-4d46-ae40-a11065879783
       - AzureAd__ClientId=5b54a03a-0b6a-4e3d-a9af-ccaca9ca8245
-      - AzureAd__ClientSecret=${AZUREAD_CLIENT_SECRET}  # 🔐 à définir dans .env
+      - AzureAd__ClientSecret=T2j8Q~9O~RH-qORo0bhQpzGF4ynf6PitIbPReaQq  # 🔐 à définir dans .env
       - AzureAd__Scope=https://graph.microsoft.com/.default
 
       # Configuration Graph API

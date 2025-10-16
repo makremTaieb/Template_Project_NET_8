@@ -235,7 +235,6 @@ namespace APIs_Signature_DigiGO.Services
                         Department = "IT",
                         Type = "Client"
                     });
-
                 }
                 catch (KeyNotFoundException knf)
                 {
